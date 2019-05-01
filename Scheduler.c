@@ -215,7 +215,7 @@ void roundRobin(int ProcessId[], int Arrival[], int cpuBurst[], int Priority[]){
 		}
 
 		//set start time if not run before
-		if(job[currentJobIndex].startTime = -1){
+		if(job[currentJobIndex].startTime == -1){
 			job[currentJobIndex].startTime = currentTime;
 		}
 
