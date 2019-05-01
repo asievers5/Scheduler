@@ -2,14 +2,9 @@
 
 int loadJobs(char *filename);
 
-struct Job {
+struct JobStruct {
     int pId, arrival, cpuBurst, priority, status;
 };
-
-int main(){
-    int x = loadJobs("joblist.txt");
-    printf("%d", x);
-}
 
 int loadJobs(char *filename)
 {
@@ -19,7 +14,7 @@ int loadJobs(char *filename)
 	int j;
 	int nJobs;
 
-    struct Job newQ[99];
+    struct JobStruct newQ[99];
 
 	/* Open file of jobs to be put in the ready que. */
 	jobs = fopen(filename, "r");

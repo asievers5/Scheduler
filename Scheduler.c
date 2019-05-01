@@ -42,19 +42,57 @@ void roundRobin(int ProcessId[], int Arrival[], int cpuBurst[], int Priority[]);
 int main()
 {
 
+	int x = 7;
+	//printf("%d", FileReader.newQ[2].arrival)
+	printf("NUMBER OF JOBS: %d\n", x);
 	struct Process processList[7];
+	
+	//file reading
 
+	FILE *jobs;
+	char string[80];
+	int j;
+	int nJobs;
+	int PID, ARRIVAL, CPUBURST, PRIORITY;
+
+	nJobs = 7;
+
+	int ProcessId[nJobs];
+	int Arrival[nJobs];
+	int cpuBurst[nJobs];
+	int Priority[nJobs];
+
+	jobs = fopen("joblist.txt", "r");
+
+	j = 0;	
+	while(fscanf(jobs, "%d %d %d %d", &PID, &ARRIVAL, &CPUBURST, &PRIORITY) != EOF){
+		ProcessId[j] = PID;
+		Arrival[j] = ARRIVAL;
+		cpuBurst[j] = CPUBURST;
+		Priority[j] = PRIORITY;
+		j = j+1;
+	}
+
+
+
+	//end file reading
+
+	/*
 	// Example input until file reading is implemented
 	int ProcessId[] = {100, 101, 102, 103, 104, 105, 106};
 	int Arrival[] = {0, 6, 8, 12, 19, 30, 35};
 	int cpuBurst[] = {10, 10, 4, 20, 15, 5, 10};
 	int Priority[] = {1,1,1,1,1,1,1,};
-
+ 	*/
+	//  Scheduling algorithm calls
 	firstComeFirstServe(ProcessId, Arrival, cpuBurst, Priority);
 	shortestJobFirst(ProcessId, Arrival, cpuBurst, Priority);
     roundRobin(ProcessId, Arrival, cpuBurst, Priority);
+
 	return 0;
 }
+
+
 
 // First Come First Serve
 void firstComeFirstServe(int ProcessId[], int Arrival[], int cpuBurst[], int Priority[]){
