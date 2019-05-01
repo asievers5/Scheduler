@@ -172,17 +172,18 @@ void shortestJobFirst(int ProcessId[], int Arrival[], int cpuBurst[], int Priori
 		art += job[i].completion - job[i].started;
 	}
 	art = art / (double)length;
-	printf("Average respones time = %.2f\n", art);
+	printf("Average response time = %.2f\n", art);
 	printf("Throughput: %.2f\n", throughput);
 }
 
 void roundRobin(int ProcessId[], int Arrival[], int cpuBurst[], int Priority[]){
+	//change quanta for fun
+	int quanta = 15;
 	double throughput, att, art;
 	int runtime, counter, shortestRuntimeIndex;
 	int currentTime = 0;
 	int i = 0;
 	int length = 7;
-	int quanta = 15;
 	int currentJobIndex = 0;
 	bool allProcessesRun = false;
     struct Job job[7];
@@ -275,7 +276,7 @@ void roundRobin(int ProcessId[], int Arrival[], int cpuBurst[], int Priority[]){
 		art += job[i].completionTime - job[i].startTime;
 	}
 	art = art / (double)length;
-	printf("Average respones time = %.2f\n", art);
+	printf("Average response time = %.2f\n", art);
 	printf("Throughput: %.2f\n\n", throughput);
 }
 
