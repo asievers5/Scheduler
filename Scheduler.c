@@ -41,14 +41,32 @@ void roundRobin(int ProcessId[], int Arrival[], int cpuBurst[], int Priority[]);
 
 int main()
 {
-
 	struct Process processList[7];
+	int nJobs = 7;
 
 	// Example input until file reading is implemented
-	int ProcessId[] = {100, 101, 102, 103, 104, 105, 106};
-	int Arrival[] = {0, 6, 8, 12, 19, 30, 35};
-	int cpuBurst[] = {10, 10, 4, 20, 15, 5, 10};
-	int Priority[] = {1,1,1,1,1,1,1,};
+	int ProcessId[nJobs];
+	int Arrival[nJobs];
+	int cpuBurst[nJobs];
+	int Priority[nJobs];
+	
+	//File Reading
+	FILE *jobs;
+	char string[80];
+	int fpId, farrival, fcpuBurst, fpriority;
+	int j;
+	
+	/* Open file of jobs to be put in the ready que. */
+	jobs = fopen("joblist.txt", "r");
+	while(fscanf(jobs, "%d %d %d %d", &fpId, &farrival, &fcpuBurst, &fpriority) != EOF) {
+		ProcessId[j]= fpId;
+		Arrival[j] = farrival;
+		cpuBurst[j] = fcpuBurst;
+		Priority[j] = fpriority;
+		j = j+1;
+	}
+	
+	fclose(jobs);
 
 	firstComeFirstServe(ProcessId, Arrival, cpuBurst, Priority);
 	shortestJobFirst(ProcessId, Arrival, cpuBurst, Priority);
